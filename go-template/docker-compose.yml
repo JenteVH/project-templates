@@ -1,0 +1,23 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-template-dev
+    volumes:
+      - .:/app
+      - go-modules:/go/pkg/mod
+      - ~/.config/nvim:/root/.config/nvim
+      - nvim-data:/root/.local/share/nvim
+      - nvim-cache:/root/.cache/nvim
+    ports:
+      - "3000:8080"
+    environment:
+      - CGO_ENABLED=1
+    stdin_open: true
+    tty: true
+
+volumes:
+  go-modules:
+  nvim-data:
+  nvim-cache:
